@@ -21,3 +21,16 @@ function Circle(radius) {
 
 let circle2 = new Circle(2);
 circle2.draw();
+
+
+// Enumerating over properties
+for(key in circle1) {
+    if(typeof circle1[key] !== 'function')
+        console.log(key, circle1[key])
+} 
+
+const keys = Object.keys(circle1);
+console.log(keys);
+
+if('radius' in circle1)
+    console.log('circle has radius')
