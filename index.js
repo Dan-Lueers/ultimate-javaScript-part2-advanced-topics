@@ -55,3 +55,35 @@ function MyCircle(radius) {
 
 const myCircle = new MyCircle();
 myCircle.draw();
+
+
+// --------------------------------------
+// Getters and Setters
+// --------------------------------------
+function SuperCircle(radius) {
+  this.radius = radius;
+  let defaultLocation = { x: 1, y: 1 };
+  let computeOptimumLocation = function () {
+    console.log("computing optimal location...");
+  };
+  this.draw = function () {
+    console.log("draw Mycircle from constructor function");
+    computeOptimumLocation();
+  };
+
+  Object.defineProperty(this, 'defaultLocation', {
+    get: function (){
+        return defaultLocation;
+    },
+    set: function(value) {
+        if(!value.x || !value.y)
+            throw new Error('Invalid default location')
+        defaultLocation = value;
+    }
+  })
+}
+
+const superCircle = new SuperCircle();
+superCircle.draw();
+superCircle.defaultLocation = {x: 3, y: 5}
+console.log(superCircle.defaultLocation);
