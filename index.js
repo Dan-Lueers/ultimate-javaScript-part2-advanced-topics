@@ -87,3 +87,40 @@ const superCircle = new SuperCircle();
 superCircle.draw();
 superCircle.defaultLocation = {x: 3, y: 5}
 console.log(superCircle.defaultLocation);
+
+
+// --------------------------------------
+// Stopwatch Exercise
+// --------------------------------------
+function StopWatch() {
+    let startTime = null;
+    let duration = 0;
+
+    this.start = function() {
+        if(startTime !== null) 
+            throw new Error('stop watch already started');
+        
+        startTime = new Date();
+    }
+
+    this.stop = function () {
+        if(startTime === null)
+            throw new Error("stop watch not running");
+
+        const endTime = new Date();
+        duration = duration + (endTime - startTime) / 1000;
+        startTime = null;
+        console.log("stop: duration is: ", duration);
+    }
+
+    this.reset = function () {
+        duration = 0;
+        startTime = null;
+    }
+
+    Object.defineProperty(this, 'duration', {
+        get: function () {
+            return duration;
+        }
+    })
+}
