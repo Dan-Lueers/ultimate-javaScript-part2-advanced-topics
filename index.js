@@ -90,7 +90,7 @@ console.log(superCircle.defaultLocation);
 
 
 // --------------------------------------
-// Stopwatch Exercise
+// Exercise1: Stopwatch
 // --------------------------------------
 function StopWatch() {
     let startTime = null;
@@ -126,9 +126,46 @@ function StopWatch() {
 }
 
 // --------------------------------------
-// 
+// Exercise2: Stopwatch Prototype
 // --------------------------------------
-console.log('das')
-let arr = [];
-for (let key in arr)
-    console.log(key);
+function StopWatch2() {
+  let startTime = null;
+  let duration = 0;
+
+  Object.defineProperty(this, "duration", {
+    get: function () {
+      return duration;
+    },
+    set: function (value) {
+      duration = value;
+    },
+  });
+  Object.defineProperty(this, "startTime", {
+    get: function () {
+      return startTime;
+    },
+    set: function (value) {
+      startTime = value;
+    },
+  });
+}
+
+StopWatch2.prototype.start = function () {
+  if (this.startTime !== null) throw new Error("stop watch already started");
+
+  this.startTime = new Date();
+};
+
+StopWatch2.prototype.stop = function () {
+  if (this.startTime === null) throw new Error("stop watch not running");
+
+  const endTime = new Date();
+  this.duration = this.duration + (endTime - this.startTime) / 1000;
+  this.startTime = null;
+  console.log("stop: duration is: ", this.duration);
+};
+
+StopWatch2.prototype.reset = function () {
+  this.duration = 0;
+  this.startTime = null;
+};
