@@ -124,3 +124,11 @@ function StopWatch() {
         }
     })
 }
+
+// --------------------------------------
+// 
+// --------------------------------------
+console.log('das')
+let arr = [];
+for (let key in arr)
+    console.log(key);
